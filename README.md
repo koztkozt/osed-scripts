@@ -9,6 +9,9 @@ bespoke tooling for offensive security's Windows Usermode Exploit Dev course (OS
     - [shellcoder.py](#shellcoderpy)
     - [install-mona.sh](#install-monash)
     - [attach-process.ps1](#attach-processps1)
+    - [push-string.py](#push-string.py)
+    - [hash.py](#hash.py)
+
 - [WinDbg Scripts](#windbg-scripts)
     - [find-ppr.py](#find-pprpy)
     - [find-bad-chars.py](#find-bad-charspy)
@@ -367,4 +370,26 @@ optional arguments:
 00718ddc  66 66 66 66 28 28 28 28-d9 d9 d9 d9 24 24 24 24  ffff((((....$$$$
 01763892  66 66 66 66 66 66 66 66-66 66 66 66 66 66 66 66  ffffffffffffffff
 ...
+```
+
+### hash.py
+print assembly code to push function hash and or print
+```
+python3 hash.py WSASocket,listen
+[ WSASocket ]: push 0xa13315be
+[ listen    ]: push 0xe92eada4
+```
+
+### hash.py
+print assembly code to push string
+```
+python3 push-string.py cmd.exe
+[ cmd.exe  ]:
+push dword 0x20657865
+push dword 0x2e646d63
+[ cmd.exe ]:
+mov   eax, 0xff9a879b
+neg   eax
+push  eax
+push  0x2e646d63
 ```
